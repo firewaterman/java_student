@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class Io {
  
 	private String fileName;
@@ -26,7 +28,7 @@ public class Io {
 	
 	private List<admin> listAd = new ArrayList<admin>();
 	/**
-	 * »ñµÃÊä³öÁ÷
+	 * è·å¾—è¾“å‡ºæµ
 	 * 
 	 * @return
 	 */
@@ -41,7 +43,7 @@ public class Io {
 	}
 	
 	/**
-	 * ¹Ø±ÕÊä³öÁ÷
+	 * å…³é—­è¾“å‡ºæµ
 	 */
 	public void closeOutPutStream() {
 		try {
@@ -53,7 +55,7 @@ public class Io {
 	}
 	
 	/**
-	 * »ñµÃÊäÈëÁ÷
+	 * è·å¾—è¾“å…¥æµ
 	 */
 	public BufferedReader getInPutStream() {
 		
@@ -68,7 +70,7 @@ public class Io {
 	}
 	
 	/**
-	 * ¹Ø±ÕÊä³öÁ÷
+	 * å…³é—­è¾“å‡ºæµ
 	 */
 	public void closeInPutStream() {
 		try {
@@ -80,16 +82,16 @@ public class Io {
 	}
 	
 	/**
-	 * ¼ì²éÎÄ¼şÊÇ·ñ´æÔÚ
+	 * æ£€æŸ¥æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 	 * 
 	 */
 	public boolean checkFile() {
 		File file = new File(fileName);
 		File filePath = file.getParentFile();
 		boolean flag = false;
-		// Èç¹ûÖ¸¶¨µÄÎÄ¼ş²»´æÔÚ,Ôò´´½¨¸ÃÎÄ¼ş
+		// å¦‚æœæŒ‡å®šçš„æ–‡ä»¶ä¸å­˜åœ¨,åˆ™åˆ›å»ºè¯¥æ–‡ä»¶
 		if (!filePath.exists()) {
-			// ÏÈ´´½¨ÎÄ¼ş¼Ğ
+			// å…ˆåˆ›å»ºæ–‡ä»¶å¤¹
 			filePath.mkdirs();
 		} 
 	    if (filePath.exists()) {
@@ -104,10 +106,10 @@ public class Io {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞÊı¾İ(³õÊ¼»¯)
+	 * æŸ¥è¯¢æ‰€æœ‰æ•°æ®(åˆå§‹åŒ–)
 	 */
 	public List<Student> initial() {
-		// Ê×ÏÈÇå¿Õ¼¯ºÏ
+		// é¦–å…ˆæ¸…ç©ºé›†åˆ
 		if (listStu.size() != 0) {
 			listStu.clear();
 		}
@@ -137,10 +139,10 @@ public class Io {
 	}
 	
 	/**
-	 * ²éÑ¯Ò»ĞĞ
+	 * æŸ¥è¯¢ä¸€è¡Œ
 	 */
 	public Student findByKey(String key) {
-		// ¶ÁÈ¡ËùÓĞÎÄ¼şĞÅÏ¢
+		// è¯»å–æ‰€æœ‰æ–‡ä»¶ä¿¡æ¯
 		listStu = this.initial();
 		for (int i = 0; i < listStu.size(); i++) {
 			if (key.equals(listStu.get(i).getSno())) {
@@ -150,41 +152,41 @@ public class Io {
             return null;
 	}
 	/**
-	 * Ìí¼ÓÒ»Ìõ¼ÇÂ¼
+	 * æ·»åŠ ä¸€æ¡è®°å½•
 	 * 
 	 * @return
 	 */
 	public boolean addInfo(Student def) {
-		boolean flag = false; // Ìí¼ÓÊ§°Ü±êÖ¾±äÁ¿
-		// ¶ÁÈ¡ËùÓĞÎÄ¼şĞÅÏ¢
+		boolean flag = false; // æ·»åŠ å¤±è´¥æ ‡å¿—å˜é‡
+		// è¯»å–æ‰€æœ‰æ–‡ä»¶ä¿¡æ¯
 		listStu = this.initial();
 		for (int i = 0; i < listStu.size(); i++) {
 			if (def.getSno().equals(listStu.get(i).getSno())) {
 				return flag;
 			}
 		}
-		flag = true; // Ìí¼Ó¼ÇÂ¼³É¹¦
-		// ¼ÓÈë¼¯ºÏÀàÖĞ
+		flag = true; // æ·»åŠ è®°å½•æˆåŠŸ
+		// åŠ å…¥é›†åˆç±»ä¸­
 		listStu.add(def);
-		// Ğ´ÈëÎÄ¼ş
+		// å†™å…¥æ–‡ä»¶
 		
 		this.updateFile();
 		return flag;
 	}
 	
 	/**
-	 * É¾³ıÒ»ĞĞ ¸ù¾İID
+	 * åˆ é™¤ä¸€è¡Œ æ ¹æ®ID
 	 */
 	public boolean deleteInfo(String key) {
 		boolean flag = false;
-		// ¶ÁÈ¡ËùÓĞÎÄ¼şĞÅÏ¢
+		// è¯»å–æ‰€æœ‰æ–‡ä»¶ä¿¡æ¯
 		listStu = this.initial();
 		for (int i = 0; i < listStu.size(); i++) {
 			if (key.equals(listStu.get(i).getSno())) {
-				listStu.remove(i); // ´Ó¼¯ºÏÖĞÒÆ³ö
-				// ¸üĞÂÎÄ¼ş
+				listStu.remove(i); // ä»é›†åˆä¸­ç§»å‡º
+				// æ›´æ–°æ–‡ä»¶
 				if (updateFile()) {
-					flag = true; // É¾³ı³É¹¦
+					flag = true; // åˆ é™¤æˆåŠŸ
 				}
 				break;
 			}
@@ -196,7 +198,7 @@ public class Io {
 		boolean flag = false;
 		for(int i=0;i<listStu.size();i++) {
 	    	  if(key.equals(listStu.get(i).sno)) {
-		            System.out.println("Ñ§ºÅ´æÔÚ"); 
+		            System.out.println("å­¦å·å­˜åœ¨"); 
 		            flag = true;
 		}else {
 			
@@ -207,14 +209,14 @@ public class Io {
 	}
 	public boolean updateInfo(Student def) {
 		boolean flag = false;
-		// ¶ÁÈ¡ËùÓĞÎÄ¼şĞÅÏ¢
+		// è¯»å–æ‰€æœ‰æ–‡ä»¶ä¿¡æ¯
 		listStu = this.initial();
 		for (int i = 0; i < listStu.size(); i++) {
 			if (def.getSno().equals(listStu.get(i).getSno())) {
-				listStu.set(i, def); // ¸üĞÂ¼¯ºÏ
-				// ¸üĞÂÎÄ¼ş
+				listStu.set(i, def); // æ›´æ–°é›†åˆ
+				// æ›´æ–°æ–‡ä»¶
 				if (updateFile()) {
-					flag = true; // ¸üĞÂ³É¹¦
+					flag = true; // æ›´æ–°æˆåŠŸ
 				}
 				break;
 			}
@@ -224,7 +226,7 @@ public class Io {
 	
 	private boolean updateFile() {
 		boolean flag = false;
-		// ÖØĞ´ÎÄ¼ş-->¸²¸ÇÎÄ¼ş
+		// é‡å†™æ–‡ä»¶-->è¦†ç›–æ–‡ä»¶
 		FileWriter fileWriter = null;
 		BufferedWriter bufferedWriter = null;
 		try {
@@ -236,14 +238,14 @@ public class Io {
 						+"="+ listStu.get(j).getGrade()  + "\n");
 				bufferedWriter.newLine();
 			}
-			bufferedWriter.flush(); // Çå¿Õ»º³å
-			flag = true; // É¾³ı³É¹¦
+			bufferedWriter.flush(); // æ¸…ç©ºç¼“å†²
+			flag = true; // åˆ é™¤æˆåŠŸ
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				bufferedWriter.close();
-				fileWriter.close(); // ¹Ø±ÕÁ÷²Ù×÷
+				fileWriter.close(); // å…³é—­æµæ“ä½œ
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -261,7 +263,7 @@ public class Io {
 	
 	
 	public List<admin> ginitial() {
-		// Ê×ÏÈÇå¿Õ¼¯ºÏ
+		// é¦–å…ˆæ¸…ç©ºé›†åˆ
 		if (listAd.size() != 0) {
 			listAd.clear();
 		}
